@@ -32,5 +32,5 @@ export const messageEnd = (
   returnValue?: any
 ) => {
   const logger = options.log || console.log
-  logger(returnValue)
+  returnValue && logger(returnValue)
 }

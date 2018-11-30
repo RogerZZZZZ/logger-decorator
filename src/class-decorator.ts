@@ -8,9 +8,10 @@ export const ClassLogger = (opt?: Partial<IClassOption>) => {
   return (target: any) => {
     console.log(target.prototype)
     keys(target.prototype).map(funcName => {
-      // Todo filter the ignore one
-
       const oldFunc = target.prototype[funcName]
+
+      if (oldFunc.__disable_logger) return
+      
       target.prototype[funcName] = FunctionWrapper(oldFunc, funcName, options)
     })
   }

@@ -7,3 +7,12 @@ export const FuncLogger = (opt?: Partial<IFunctionOption>) => {
 
   }
 }
+
+export const DisableLogger = () => {
+  return function(target: any, name: String, descriptor: any) {
+    const oldFunc = descriptor.value
+    oldFunc.__disable_logger = true
+    descriptor.value = oldFunc
+    return descriptor
+  }
+}

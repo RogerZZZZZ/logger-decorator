@@ -1,3 +1,4 @@
+import { DisableLogger } from './function-decorator';
 import { ClassLogger } from './class-decorator';
 
 @ClassLogger()
@@ -13,8 +14,14 @@ class Index {
   add(p3: string): string {
     return this.p1 + p3
   }
+
+  @DisableLogger()
+  get(): string {
+    return this.p2
+  }
 }
 
 
 const index = new Index('piggy', 'pig')
 index.add('1020')
+index.get()

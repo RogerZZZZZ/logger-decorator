@@ -10,5 +10,6 @@ export const FunctionWrapper = (
     message(options, this, args, funcName, func)
     const result = func.apply(this, args)
     messageEnd(options, result)
+    return result
   }
 }
