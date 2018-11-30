@@ -1,7 +1,6 @@
-import { MyLibrary } from './MyLibrary';
-import { ClassDecorator } from './class-decorator';
+import { ClassLogger } from './class-decorator';
 
-@ClassDecorator()
+@ClassLogger()
 class Index {
   private p1: string
   private p2: string

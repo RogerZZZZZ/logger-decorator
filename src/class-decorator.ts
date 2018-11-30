@@ -1,7 +1,7 @@
 import { keys } from './lib/utils'
 import { FunctionWrapper } from './lib/function-wrapper'
 
-export const ClassDecorator = () => {
+export const ClassLogger = () => {
   return (target: any) => {
     console.log(target.prototype)
     keys(target.prototype).map(funcName => {
