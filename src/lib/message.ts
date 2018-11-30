@@ -16,7 +16,6 @@ export const message = (
 ) => {
   const logger = options.log || console.log
   logger(that)
-  logger(arg)
   const time = options.withTime ? (new Date()).toISOString() : ''
 
   const beginMessage = options.beginMessage || null
