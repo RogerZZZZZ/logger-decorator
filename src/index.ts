@@ -1,7 +1,9 @@
 import { DisableLogger, FuncLogger } from './function-decorator';
 import { ClassLogger } from './class-decorator';
 
-@ClassLogger()
+@ClassLogger({
+  beginMessage: 'aaaaa'
+})
 class Index {
   private p1: string
   private p2: string
@@ -18,6 +20,7 @@ class Index {
 
   @FuncLogger({
     withTime: false,
+    beginMessage: 'access to test function'
   })
   test(p4: string): string {
     return this.p2 + p4
@@ -33,4 +36,4 @@ class Index {
 const index = new Index('piggy', 'pig')
 index.add('1020')
 index.test('2020')
-index.get()
+// index.get()

@@ -1,3 +1,4 @@
+import { isObjEmpty } from './lib/utils';
 import { defaultFuncOpt } from './lib/opt/default-function-option';
 import { IFunctionOption } from './lib/@types/IFunctionOption';
 
@@ -9,9 +10,8 @@ const decorateFunc = (descriptor: any, field: string, value: any) => {
 }
 
 export const FuncLogger = (opt?: Partial<IFunctionOption>) => {
-  const options = {...defaultFuncOpt, ...opt}
   return function(target: any, name: string, descriptor: any) {
-    return decorateFunc(descriptor, '__opt', options)
+    return isObjEmpty(opt) ? descriptor : decorateFunc(descriptor, '__opt', opt)
   }
 }
 
