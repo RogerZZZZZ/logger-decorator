@@ -1,5 +1,5 @@
-import { IBaseOption } from './IBaseOption';
+import { IFunctionOption } from './IFunctionOption';
 
-export interface IClassOption extends IBaseOption {
+export interface IClassOption extends IFunctionOption {
 
 }
