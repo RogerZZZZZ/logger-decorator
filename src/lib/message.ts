@@ -16,7 +16,7 @@ export const message = (
   func: Function,
 ) => {
   const logger = options.log || console.log
-  logger(that)
+  that && that.constructor && logger(that.constructor.name)
   const time = options.withTime ? (new Date()).toISOString() : ''
 
   const beginMessage = options.beginMessage || null

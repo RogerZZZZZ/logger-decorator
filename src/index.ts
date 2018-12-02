@@ -1,5 +1,6 @@
-import { DisableLogger, FuncLogger } from './function-decorator';
+import { DisableLogger, FuncLogger, Logger } from './function-decorator';
 import { ClassLogger } from './class-decorator';
+import { logDecorate } from './normal-decorator';
 
 @ClassLogger({
   beginMessage: 'aaaaa'
@@ -44,9 +45,21 @@ class Index {
   }
 }
 
-
 const index = new Index('piggy', 'pig')
 index.add('1020')
-// index.test('2020')
-// index.loop()
-// index.get()
+index.test('2020')
+index.loop()
+index.get()
+
+
+function add2(a: string, b: string) {
+  return a + b
+}
+
+const res = logDecorate({
+  logReturn: true
+})(add2)
+
+// could directly export res
+
+res.add2('1', 'b')
