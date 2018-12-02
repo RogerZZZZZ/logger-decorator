@@ -6,4 +6,5 @@ export const defaultOpt: IBaseOption = {
   log: console.log,
   withTime: true,
   disable: false,
+  duration: false,
 }

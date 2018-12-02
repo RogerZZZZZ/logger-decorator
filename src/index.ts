@@ -30,10 +30,23 @@ class Index {
   get(): string {
     return this.p2
   }
+
+  @FuncLogger({
+    logReturn: true,
+    duration: true,
+  })
+  loop(): number {
+    let index = 0
+    for (let i = 0; i < 1000000; i++) {
+      index ++
+    }
+    return index
+  }
 }
 
 
 const index = new Index('piggy', 'pig')
 index.add('1020')
 index.test('2020')
+index.loop()
 // index.get()

@@ -4,4 +4,5 @@ export interface IBaseOption {
   log: Function,
   withTime: Boolean,
   disable: Boolean,
+  duration: Boolean,
 }

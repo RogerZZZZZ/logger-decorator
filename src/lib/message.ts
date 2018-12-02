@@ -1,5 +1,6 @@
 import { getArsName } from './utils';
 import { IFunctionOption } from './@types/IFunctionOption';
+import { runningOnNode } from './utils'
 
 const getArgsList = (func: Function, values: any[]) => {
   return getArsName(func).map((param, index) => {
@@ -28,8 +29,11 @@ export const message = (
 
 export const messageEnd = (
   options: IFunctionOption,
+  duration: number,
   returnValue?: any
 ) => {
   const logger = options.log || console.log
-  returnValue && logger(returnValue)
+  const perf = (options.duration && `Function spent: ${duration.toFixed(3)}ms`) || ''
+  const value = (options.logReturn && returnValue && `Return Value: ${returnValue}`) || ''
+  if (perf !== '' || value !== '') logger(`[${perf} ${value}]`)
 }
