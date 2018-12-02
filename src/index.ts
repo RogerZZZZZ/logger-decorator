@@ -47,6 +47,6 @@ class Index {
 
 const index = new Index('piggy', 'pig')
 index.add('1020')
-index.test('2020')
-index.loop()
+// index.test('2020')
+// index.loop()
 // index.get()
