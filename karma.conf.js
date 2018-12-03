@@ -1,4 +1,6 @@
-var webpackConf = require('./webpack.config.js');
+const nodeEnv = process.env.NODE_ENV || 'development';
+const isProd = nodeEnv === 'production';
+
 module.exports = function(config) {
   config.set({
     basePath: '',
@@ -10,12 +12,31 @@ module.exports = function(config) {
       '**/*.ts': 'karma-typescript'
     },
     webpack: {
-      module: webpackConf.module,
-      resolve: webpackConf.resolve
-    },
-    webpackMiddleware: {
-      noInfo: true,
-      stats: 'errors-only'
+      module: {
+        rules: [
+          {
+            enforce: 'pre',
+            test: /\.tsx?$/,
+            exclude: [/\/node_modules\//],
+            use: ['awesome-typescript-loader', 'source-map-loader']
+          },
+          !isProd
+            ? {
+                test: /\.(js|ts)$/,
+                loader: 'istanbul-instrumenter-loader',
+                exclude: [/\/node_modules\//],
+                query: {
+                  esModules: true
+                }
+              }
+            : null,
+          { test: /\.html$/, loader: 'html-loader' },
+          { test: /\.css$/, loaders: ['style-loader', 'css-loader'] }
+        ].filter(Boolean)
+      },
+      resolve: {
+        extensions: ['.ts', '.js']
+      },
     },
     reporters: ['spec', 'coverage-istanbul'],
     specReporter: {

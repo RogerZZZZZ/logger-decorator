@@ -4,7 +4,7 @@ import {
   DisableLogger,
   Logger,
   logDecorate,
-} from './LoggerDecorator'
+} from './logger-decorator'
 
 @ClassLogger({
   beginMessage: 'aaaaa'

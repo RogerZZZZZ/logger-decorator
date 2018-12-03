@@ -1,3 +1,10 @@
 node_modules/
 
 package-lock.json
+yarn.lock
+
+.rpt2_cache
+docs
+.nyc_output
+
+dist/
