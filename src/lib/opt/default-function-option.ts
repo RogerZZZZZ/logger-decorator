@@ -1,4 +1,4 @@
-import { IFunctionOption } from './../@types/IFunctionOption';
+import { IFunctionOption } from './../interface/IFunctionOption';
 import { defaultOpt } from './default-base-option'
 
 export const defaultFuncOpt: IFunctionOption = Object.assign(defaultOpt, {

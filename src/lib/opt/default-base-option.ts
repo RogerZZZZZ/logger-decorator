@@ -1,4 +1,4 @@
-import { IBaseOption } from './../@types/IBaseOption';
+import { IBaseOption } from './../interface/IBaseOption';
 
 export const defaultOpt: IBaseOption = {
   classProperties: false,

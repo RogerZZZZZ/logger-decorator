@@ -1,5 +1,5 @@
 import { getArsName } from './utils';
-import { IFunctionOption } from './@types/IFunctionOption';
+import { IFunctionOption } from './interface/IFunctionOption';
 
 const TAB = '    '
 
@@ -13,8 +13,8 @@ const concatMsg = (...args: string[]): string => {
   return args.filter(el => el && el !== '').join(' ')
 }
 
-const getProperties = (classObj: Object): string => {
-  return Object.keys(classObj).reduce((msg, el) => {
+const getProperties = (classObj: any): string => {
+  return Object.keys(classObj).reduce((msg: string[], el) => {
     msg.push(`${el}: ${classObj[el]}`)
     return msg
   }, []).join(' ')
@@ -22,7 +22,7 @@ const getProperties = (classObj: Object): string => {
 
 export const message = (
   options: IFunctionOption,
-  that: Function,
+  that: any,
   arg: any[],
   name: string,
   func: Function,
@@ -47,7 +47,7 @@ export const message = (
 export const messageEnd = (
   options: IFunctionOption,
   duration: number,
-  that: Function,
+  that: any,
   name: string,
   returnValue?: any
 ) => {

@@ -1,6 +1,10 @@
-import { DisableLogger, FuncLogger, Logger } from './function-decorator';
-import { ClassLogger } from './class-decorator';
-import { logDecorate } from './normal-decorator';
+import {
+  ClassLogger,
+  FuncLogger,
+  DisableLogger,
+  Logger,
+  logDecorate,
+} from './LoggerDecorator'
 
 @ClassLogger({
   beginMessage: 'aaaaa'

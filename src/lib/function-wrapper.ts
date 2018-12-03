@@ -1,4 +1,4 @@
-import { IFunctionOption } from './@types/IFunctionOption';
+import { IFunctionOption } from './interface/IFunctionOption';
 import { message, messageEnd } from './message'
 import { now } from './performance-now-polyfill'
 

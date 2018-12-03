@@ -2,9 +2,13 @@ var webpackConf = require('./webpack.config.js');
 module.exports = function(config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine'],
-    files: [{ pattern: './tests/unit/spec-bundle.js', watched: false }],
-    preprocessors: { './tests/unit/spec-bundle.js': ['webpack', 'sourcemap'] },
+    frameworks: ['jasmine', 'karma-typescript'],
+    files: [{
+      pattern: './tests/*.ts'
+    }],
+    preprocessors: {
+      '**/*.ts': 'karma-typescript'
+    },
     webpack: {
       module: webpackConf.module,
       resolve: webpackConf.resolve

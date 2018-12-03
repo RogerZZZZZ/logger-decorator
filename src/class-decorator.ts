@@ -1,5 +1,5 @@
 import { defaultClassOpt } from './lib/opt/default-class-option';
-import { IClassOption } from './lib/@types/IClassOption';
+import { IClassOption } from './lib/interface/IClassOption';
 import { keys } from './lib/utils'
 import { FunctionWrapper } from './lib/function-wrapper'
 

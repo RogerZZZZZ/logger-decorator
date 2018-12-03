@@ -1,6 +1,6 @@
 import { isObjEmpty } from './lib/utils';
 import { defaultFuncOpt } from './lib/opt/default-function-option';
-import { IFunctionOption } from './lib/@types/IFunctionOption';
+import { IFunctionOption } from './lib/interface/IFunctionOption';
 import { FunctionWrapper } from './lib/function-wrapper';
 
 const decorateFunc = (descriptor: any, field: string, value: any) => {
@@ -21,6 +21,7 @@ export const DisableLogger = () => {
     return decorateFunc(descriptor, '__disable_logger', true)
   }
 }
+
 export const Logger = (opt?: Partial<IFunctionOption>) => {
   const options = {...defaultFuncOpt, ...opt}
   return function(target: any, name: string, descriptor: any) {

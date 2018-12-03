@@ -26,7 +26,7 @@ export const getArsName = (func: Function) => {
  * @param obj target object
  * @return whether the object is empty or not
  */
-export const isObjEmpty = (obj: Object) => {
+export const isObjEmpty = (obj: any) => {
   return obj && Object.keys(obj).length === 0 && obj.constructor === Object
 }
 
