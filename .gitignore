@@ -8,3 +8,5 @@ docs
 .nyc_output
 
 dist/
+
+test/coverage
