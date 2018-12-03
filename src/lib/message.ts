@@ -1,11 +1,23 @@
 import { getArsName } from './utils';
 import { IFunctionOption } from './@types/IFunctionOption';
-import { runningOnNode } from './utils'
+
+const TAB = '    '
 
 const getArgsList = (func: Function, values: any[]) => {
   return getArsName(func).map((param, index) => {
     return `${param}: ${values[index]}`
-  }).join(' ')
+  }).join(',')
+}
+
+const concatMsg = (...args: string[]): string => {
+  return args.filter(el => el && el !== '').join(' ')
+}
+
+const getProperties = (classObj: Object): string => {
+  return Object.keys(classObj).reduce((msg, el) => {
+    msg.push(`${el}: ${classObj[el]}`)
+    return msg
+  }, []).join(' ')
 }
 
 export const message = (
@@ -16,24 +28,35 @@ export const message = (
   func: Function,
 ) => {
   const logger = options.log || console.log
-  that && that.constructor && logger(that.constructor.name)
+
+
+  // print basic info of function
+  const className = (that && that.constructor && that.constructor.name) || ''
   const time = options.withTime ? (new Date()).toISOString() : ''
+  logger(concatMsg(time, `[${className}#${name}] START`))
 
-  const beginMessage = options.beginMessage || null
-  beginMessage && logger(beginMessage)
+  // print begin message if there are any
+  options.beginMessage && logger(`${TAB}${options.beginMessage}`)
 
-  logger(`[Function: ${name}] - ${time}`)
+  options.classProperties && logger(`${TAB}Class Properties: [${getProperties(that)}]`)
 
-  logger(`[${getArgsList(func, arg)}]`)
+  // print parameters of function
+  options.withParams && logger(`${TAB}Parameters: [${getArgsList(func, arg)}]`)
 }
 
 export const messageEnd = (
   options: IFunctionOption,
   duration: number,
+  that: Function,
+  name: string,
   returnValue?: any
 ) => {
   const logger = options.log || console.log
-  const perf = (options.duration && `Function spent: ${duration.toFixed(3)}ms`) || ''
-  const value = (options.logReturn && returnValue && `Return Value: ${returnValue}`) || ''
-  if (perf !== '' || value !== '') logger(`[${perf} ${value}]`)
+
+  options.duration && logger(`${TAB}Function spent: ${duration.toFixed(3)}ms`)
+
+  options.logReturn && returnValue && logger(`${TAB}Return Value: ${returnValue}`)
+
+  const className = (that && that.constructor && that.constructor.name) || ''
+  logger(`[${className}#${name}] END`)
 }

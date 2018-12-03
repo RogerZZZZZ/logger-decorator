@@ -14,13 +14,16 @@ class Index {
     this.p2 = p2
   }
 
-  @FuncLogger()
+  @FuncLogger({
+    classProperties: true,
+  })
   add(p3: string): string {
     return this.p1 + p3
   }
 
   @FuncLogger({
     withTime: false,
+    withParams: true,
     beginMessage: 'access to test function'
   })
   test(p4: string): string {
@@ -48,8 +51,8 @@ class Index {
 const index = new Index('piggy', 'pig')
 index.add('1020')
 index.test('2020')
-index.loop()
-index.get()
+// index.loop()
+// index.get()
 
 
 function add2(a: string, b: string) {

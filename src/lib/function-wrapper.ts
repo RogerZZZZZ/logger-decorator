@@ -12,7 +12,7 @@ export const FunctionWrapper = (
     const startTime = now()
     const result = func.apply(this, args)
     const endTime = now()
-    messageEnd(options, (endTime - startTime), result)
+    messageEnd(options, (endTime - startTime), this, funcName, result)
     return result
   }
 }
