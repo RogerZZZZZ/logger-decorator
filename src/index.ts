@@ -51,7 +51,7 @@ class Index {
 const index = new Index('piggy', 'pig')
 index.add('1020')
 index.test('2020')
-// index.loop()
+index.loop()
 // index.get()
 
 
@@ -64,5 +64,4 @@ const res = logDecorate({
 })(add2)
 
 // could directly export res
-
 res.add2('1', 'b')

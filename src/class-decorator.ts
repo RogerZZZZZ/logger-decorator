@@ -11,8 +11,8 @@ export const ClassLogger = (opt?: Partial<IClassOption>) => {
 
       if (oldFunc.__disable_logger) return
 
-      options = oldFunc.__opt ? {...options, ...oldFunc.__opt } : options
-      target.prototype[funcName] = FunctionWrapper(oldFunc, funcName, options)
+      const individualOpt = oldFunc.__opt ? {...options, ...oldFunc.__opt } : options
+      target.prototype[funcName] = FunctionWrapper(oldFunc, funcName, individualOpt)
     })
   }
 }
