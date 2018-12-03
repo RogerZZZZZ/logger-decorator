@@ -24,6 +24,7 @@ export const DisableLogger = () => {
 export const Logger = (opt?: Partial<IFunctionOption>) => {
   const options = {...defaultFuncOpt, ...opt}
   return function(target: any, name: string, descriptor: any) {
+    if (options.disable) return descriptor
     const oldFunc = descriptor.value
     descriptor.value = FunctionWrapper(oldFunc, name, options)
     return descriptor

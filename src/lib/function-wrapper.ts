@@ -11,8 +11,7 @@ export const FunctionWrapper = (
     message(options, this, args, funcName, func)
     const startTime = now()
     const result = func.apply(this, args)
-    const endTime = now()
-    messageEnd(options, (endTime - startTime), this, funcName, result)
+    messageEnd(options, (now() - startTime), this, funcName, result)
     return result
   }
 }

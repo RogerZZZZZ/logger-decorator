@@ -36,6 +36,12 @@ class Index {
   }
 
   @FuncLogger({
+  })
+  testDisable() {
+    return 'testDisable'
+  }
+
+  @FuncLogger({
     logReturn: true,
     duration: true,
   })
@@ -51,6 +57,7 @@ class Index {
 const index = new Index('piggy', 'pig')
 index.add('1020')
 index.test('2020')
+index.testDisable()
 index.loop()
 // index.get()
 
