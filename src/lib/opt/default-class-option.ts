@@ -1,4 +1,4 @@
 import { defaultFuncOpt } from './default-function-option';
 import { IClassOption } from './../interface/IClassOption';
 
-export const defaultClassOpt: IClassOption = Object.assign(defaultFuncOpt, {})
+export const defaultClassOpt: IClassOption = {...defaultFuncOpt}

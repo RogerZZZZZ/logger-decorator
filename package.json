@@ -31,12 +31,22 @@
   "devDependencies": {
     "@types/jasmine": "^2.5.53",
     "@types/node": "^10.12.11",
+    "awesome-typescript-loader": "^5.2.1",
     "consolemock": "^1.1.0",
     "cross-env": "^5.0.1",
     "eslint": "^5.4.0",
-    "jest": "^23.6.0",
-    "jest-config": "^23.6.0",
     "istanbul-instrumenter-loader": "^3.0.0",
+    "jasmine": "^3.2.0",
+    "jasmine-core": "^3.2.1",
+    "karma": "^3.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage-istanbul-reporter": "^2.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.32",
+    "karma-typescript": "^3.0.13",
+    "karma-typescript-es6-transform": "^1.0.4",
+    "karma-webpack": "^3.0.0",
     "lodash.camelcase": "^4.3.0",
     "rimraf": "^2.6.1",
     "rollup": "^0.67.0",
@@ -46,7 +56,6 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-typescript2": "^0.18.0",
     "source-map-loader": "^0.2.1",
-    "ts-jest": "^23.10.2",
     "tslint": "^5.5.0",
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
@@ -54,36 +63,9 @@
     "typescript": "^3.0.1"
   },
   "directories": {
-    "test": "tests"
+    "test": "test"
   },
-  "jest": {
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testEnvironment": "node",
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/",
-      "/test/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 95,
-        "lines": 95,
-        "statements": 95
-      }
-    },
-    "collectCoverageFrom": [
-      "src/*.{js,ts}"
-    ]
-  },
-  "license": "ISC",
+  "license": "MIT",
   "main": "dist/logger-decorator.umd.js",
   "module": "dist/logger-decorator.es5.js",
   "name": "logger-decorator",
@@ -92,9 +74,7 @@
     "server": "npm run server:dev",
     "server:dev": "webpack-dev-server --mode development --config ./webpack.config.js --hot --inline --progress --watch --open",
     "server:prod": "cross-env NODE_ENV=production webpack-dev-server  --mode production --config ./webpack.config.js --port 3000 --host 0.0.0.0 --hot --inline --progress  --watch --open --content-base dist/",
-    "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch",
-    "test:prod": "npm run lint && npm run test -- --no-cache",
+    "test": "karma start",
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
     "prebuild": "rimraf dist",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",

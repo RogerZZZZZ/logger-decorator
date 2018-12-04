@@ -10,3 +10,6 @@ docs
 dist/
 
 test/coverage
+converage
+
+*.log
