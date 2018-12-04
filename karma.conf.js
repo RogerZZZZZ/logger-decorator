@@ -80,6 +80,7 @@ module.exports = function(config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: true,
+    logLevel: config.LOG_LOG,
     concurrency: Infinity
   });
 };

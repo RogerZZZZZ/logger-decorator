@@ -1,8 +1,11 @@
 export class ConsoleCollector {
-  private log = []
+  private log: string[]
+
+  constructor() {
+    this.log = []
+  }
 
   logger(...args) {
-    console.log(...args)
     this.log.push(args.join(''))
   }
 

@@ -9,16 +9,20 @@ describe('Class Logger Decorator', () => {
 
     @ClassLogger({
       classProperties: true,
-      log: collector.logger
+      log: collector.logger.bind(collector)
     })
     class Test {
       private field1: string
       constructor(field1: string) {
         this.field1 = field1
       }
+      test() {
+        //
+      }
     }
 
     const test = new Test('111')
+    test.test()
     console.log(collector.history())
     // console.printHistory()
   })
