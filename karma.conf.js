@@ -1,23 +1,58 @@
+const nodeEnv = process.env.NODE_ENV || 'development';
+const isProd = nodeEnv === 'production';
+
 module.exports = function(config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', 'karma-typescript'],
     files: [{
-      pattern: './test/unit/*.ts'
+      pattern: './test/unit/**/*.ts'
     }],
     preprocessors: {
-      './test/unit/*.ts': 'karma-typescript'
+      './test/unit/**/*.ts': 'karma-typescript',
     },
     client: {
       captureConsole: true,
     },
-    bundlerOptions: {
-      transforms: [
-        require("karma-typescript-es6-transform")()
-      ]
+    karmaTypescriptConfig: {
+      bundlerOptions: {
+        transforms: [
+          require("karma-typescript-es6-transform")()
+        ]
+      }
     },
-    terminal: true,
-    reporters: ['spec', 'coverage-istanbul'],
+    webpackMiddleware: {
+      noInfo: true,
+      stats: 'errors-only'
+    },
+    webpack: {
+      module: {
+        rules: [
+          {
+            enforce: 'pre',
+            test: /\.tsx?$/,
+            exclude: [/\/node_modules\//],
+            use: ['awesome-typescript-loader', 'source-map-loader']
+          },
+          !isProd
+            ? {
+                test: /\.(js|ts)$/,
+                loader: 'istanbul-instrumenter-loader',
+                exclude: [/\/node_modules\//],
+                query: {
+                  esModules: true
+                }
+              }
+            : null,
+          { test: /\.html$/, loader: 'html-loader' },
+          { test: /\.css$/, loaders: ['style-loader', 'css-loader'] }
+        ].filter(Boolean)
+      },
+      resolve: {
+        extensions: ['.ts', '.js']
+      },
+    },
+    // reporters: ['spec', 'coverage-istanbul'],
     specReporter: {
       maxLogLines: 5, // limit number of lines logged per test
       suppressErrorSummary: true, // do not print error summary

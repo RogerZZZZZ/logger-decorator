@@ -1,11 +1,12 @@
-/* eslint-disable */
 import { ClassLogger } from '../../dist/lib/logger-decorator'
-import ConsoleCollector from '../lib/console-collector'
+import { ConsoleCollector } from './lib/console-collector'
 
-const collector = new ConsoleCollector()
 
 describe('Class Logger Decorator', () => {
   it('should bind logger', () => {
+
+    const collector = new ConsoleCollector()
+
     @ClassLogger({
       classProperties: true,
       log: collector.logger

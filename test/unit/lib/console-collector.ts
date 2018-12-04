@@ -1,7 +1,8 @@
-export default class ConsoleCollector {
+export class ConsoleCollector {
   private log = []
 
   logger(...args) {
+    console.log(...args)
     this.log.push(args.join(''))
   }
 
@@ -9,3 +10,5 @@ export default class ConsoleCollector {
     return this.log
   }
 }
+
+export default ConsoleCollector
