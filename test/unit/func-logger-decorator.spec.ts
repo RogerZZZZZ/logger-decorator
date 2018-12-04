@@ -41,8 +41,7 @@ describe('Test FuncLogger', () => {
     const basic = new Basic('basic')
     basic.testFunction1()
     basic.testFunction2()
-    const history = collector.history()
-    expect(history).toEqual([
+    expect(collector.history()).toEqual([
       '[Basic#testFunction1] START',
       '    Begin Message',
       '    Return Value: basic',
@@ -118,8 +117,7 @@ describe('Test DisableLogger', () => {
 
     const basic = new Basic('basic')
     basic.testFunction1()
-    const history = collector.history()
-    expect(history.length).toBe(0)
+    expect(collector.history().length).toBe(0)
   })
 })
 
@@ -145,8 +143,7 @@ describe('Test Logger Decorate', () => {
 
     const basic = new Basic('basic')
     basic.testFunction1('param')
-    const history = collector.history()
-    expect(history).toEqual([
+    expect(collector.history()).toEqual([
       '[Basic#testFunction1] START',
       '    Parameters: [param: param]',
       '    Return Value: basic',
